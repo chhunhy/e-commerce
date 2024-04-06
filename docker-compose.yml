@@ -1,0 +1,10 @@
+version: '3'
+services:
+  mini-project-chhunhy:
+    #image: it for name your image after docker build -t nameyourimages .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3280:3000
