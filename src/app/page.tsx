@@ -12,22 +12,30 @@ import CardProductComponent from "@/components/cards/CardProductComponent";
 import FooterComponent from "@/components/layouts/footer/FooterComponent";
 import CarouselComponent from "@/components/CarouselComponent";
 
-async function fetchProducts() {
-  const products = await fetch(`${baseApi}products`, {
+// async function fetchProducts() {
+//   const products = await fetch(`${baseApi}products`, {
+//     cache: "no-store"
+//   });
+//   const res = await products.json();
+//   const rest = res.results;
+//   return rest;
+// }
+
+async function fetchProducts(sellerName:string){
+  const products = await fetch(`${baseApi}products?page=1&page_size=1000`,{
     cache: "no-store"
   });
-  const res = await products.json();
-  const rest = res.results;
-  return rest;
+  const rest = await products.json();
+  const filteredProducts = rest.results.filter((product: ProductType) => product.seller === sellerName);
+  return filteredProducts;
+
 }
 
-
-
 export default async function Home() {
-  // const sellerName ="Chhunhy Chhem"
+  const sellerName ="Chhunhy Chhem"
   //  //const users = await fetchUsers();
-  //const products = await fetchProducts(sellerName);
-  const products = await fetchProducts();
+  const products = await fetchProducts(sellerName);
+ // const products = await fetchProducts();
   return (
     <> 
     <CarouselComponent/>
