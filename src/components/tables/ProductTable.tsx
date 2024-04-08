@@ -78,7 +78,7 @@ export default function ProductTable() {
 						className={`text-white px-2 py-3 rounded-lg font-semibold  ${
 							row.seller === "Chhunhy Chhem"
 								? "bg-blue-500 hover:bg-blue-700"
-								: "bg-blue-600  text-black cursor-not-allowed"
+								: "bg-blue-600  text-black hidden"
 						}`}
 						onClick={() => {
 							if (row.seller === "Chhunhy Chhem")
@@ -90,7 +90,7 @@ export default function ProductTable() {
 						className={` bg-red-500 text-white py-3 px-3 rounded-lg font-semibold  ${
 							row.seller === "Chhunhy Chhem"
 								? "bg-red-500 hover:bg-red-700"
-								: "bg-gray-300 text-black cursor-not-allowed"
+								: "bg-gray-300 text-black hidden"
 						}`}
 						onClick={() => {
 							if (row.seller === "Chhunhy Chhem")
@@ -151,7 +151,7 @@ export default function ProductTable() {
 
 		try {
 			const response = await fetch(`${baseApi}products/${productId}/`, {
-				method: "PATCH",
+				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -444,7 +444,3 @@ export default function ProductTable() {
 		</div>
 	);
 }
-
-
-
-
